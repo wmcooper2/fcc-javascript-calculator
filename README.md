@@ -1,4 +1,4 @@
-# JavaScript Calculator
+# [JavaScript Calculator](https://codepen.io/wmcooper2/full/jOOWVVg)
 A calculator made using JavaScript.
 
 ![Screenshot](screenshot.jpg)
