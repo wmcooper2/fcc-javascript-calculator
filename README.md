@@ -1,5 +1,5 @@
 # [JavaScript Calculator](https://codepen.io/wmcooper2/full/jOOWVVg)
-A calculator made using JavaScript.
+A Yoshi's Cookie-themed calculator made using JavaScript.
 
 ![Screenshot](screenshot.jpg)
 
@@ -19,4 +19,4 @@ Click on the calculator's keys and calculate simple expressions.
 * There were many small challenges with trying to parse something on my own. I relied on regular expressions, and conditionals to make the expressions work properly.
 
 ## More Information
-N/A
+This was a Free Code Camp project.
