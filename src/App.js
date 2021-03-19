@@ -1,49 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
 let buttonKeys = [
- 	{	name: "one", 		value: "1"},
- 	{	name: "two", 		value: "2"},
- 	{	name: "three", 	value: "3"},
- 	{ name: "four", 	value: "4"},
- 	{ name: "five", 	value: "5"},
- 	{ name: "six", 		value: "6"},
- 	{ name: "seven", 	value: "7"},
- 	{ name: "eight", 	value: "8"},
- 	{ name: "nine", 	value: "9"},
- 	{ name: "zero", 	value: "0"},
- 	{ name: "add", 		value: "+"},
- 	{ name: "subtract", value: "-"}, 
- 	{ name: "multiply", value: "x"},
- 	{ name: "divide", 	value: "/"},
- 	{ name: "decimal", 	value: ".", content: "."},
+	{ name: "one", 		value: "1"},
+	{ name: "two", 		value: "2"},
+	{ name: "three", 	value: "3"},
+	{ name: "four", 	value: "4"},
+	{ name: "five", 	value: "5"},
+	{ name: "six", 		value: "6"},
+	{ name: "seven", 	value: "7"},
+	{ name: "eight", 	value: "8"},
+	{ name: "nine", 	value: "9"},
+	{ name: "zero", 	value: "0"},
+	{ name: "add", 		value: "+"},
+	{ name: "subtract", value: "-"}, 
+	{ name: "multiply", value: "x"},
+	{ name: "divide", 	value: "/"},
+	{ name: "decimal", 	value: ".", content: "."},
 	{ name: "equals", 	value: "=", content: "="},
-	{ name: "clear", 		value: "clear"}
+	{ name: "clear", 	value: "clear"}
 ];
+
 let NONZERO = "123456789";
-let NUMBERS = "0123456789";
-let NUMBERSANDDOT = "0123456789.";
+// let NUMBERS = "0123456789";
+// let NUMBERSANDDOT = "0123456789.";
 let OPERATORS = "+-x/";
-let OPERATORSANDDOT = "+-x/.";
+// let OPERATORSANDDOT = "+-x/.";
 let DOT = ".";
 let EQUAL = "=";
 let MINUS = "-";
 let ZERO = "0";
 let CLEAR = "clear";
-let MAXNUMLENGTH = 20;
+// let MAXNUMLENGTH = 20;
 
 let decReg = /[.]/;
-let numReg = /[1-9]/;
+// let numReg = /[1-9]/;
 let oneOpReg = /^[+-x/]$/;
 let twoOpReg = /^[+-x/]-/;
 let zeroReg = /^0$/;
 let onlyMinReg = /^-$/;
-let negReg = /^[+-x/]-/;
-let formEndSwapReg = /[+-x/]+$/;
+// let negReg = /^[+-x/]-/;
+// let formEndSwapReg = /[+-x/]+$/;
 let equalReg = /=/;
 
 
@@ -53,6 +51,7 @@ const Key = props => {
 
 //this doesn't make ANY sense... can't delete this or the whole thing doesnt work
 let keys = [];
+var key;
 for (key of buttonKeys){
 	keys.push(<Key name={key.name}/>);
 }
@@ -74,8 +73,6 @@ class Calculator extends React.Component{
  		this.num = this.num.bind(this);
 		this.answer = this.answer.bind(this); 
 	}
-
-	
 	
 	zero(){
 		let form = this.state.FOR;
@@ -90,7 +87,7 @@ class Calculator extends React.Component{
 			} else if (!zeroReg.test(dis)){					// dis is not 0   //OPR, NUM or "0."
 				console.log("dis not 0");
 				// if (oneOpReg.test(dis)){ 								// dis is single op
-				if (dis == "+" || dis == "-" || dis == "x" || dis == "/"){ 								// dis is single op
+				if (dis === "+" || dis === "-" || dis === "x" || dis === "/"){ 								// dis is single op
 					console.log("its one op");
 					this.setState({FOR: form + dis});				// append dis to form
 					this.setState({DIS: ZERO});							// dis becomes value
@@ -157,7 +154,7 @@ class Calculator extends React.Component{
 				}
 
 			} else if (oneOpReg.test(dis)){									// dis is single op
-				if (oper == MINUS){															// oper is minus sign
+				if (oper === MINUS){															// oper is minus sign
 					if (onlyMinReg.test(dis)){											// dis is only minus
 						// do nothing
 					} else {																				// dis not only minus
@@ -170,7 +167,7 @@ class Calculator extends React.Component{
 				}
 
 			} else if (twoOpReg.test(dis)){									// if dis is two operators
-				if (oper == MINUS){														// value is minus, do nothing
+				if (oper === MINUS){														// value is minus, do nothing
 				} else {																				// value is + x /
 					this.setState({DIS: oper});										// replace dis with op
 					this.setState({FOR: form.slice(0, form.length-2) + oper});//swap the op on form
@@ -178,7 +175,6 @@ class Calculator extends React.Component{
 			}
 		}
 	}//end op()
-	
 	
 	num(value){		
 		let form = this.state.FOR;
@@ -253,10 +249,9 @@ class Calculator extends React.Component{
 		return temp;
 	} //end makeKeys()
 	
-	
 	clicks(event){
 		let target = event.target.id;
-		let obj = buttonKeys.filter(el => el.name == target);
+		let obj = buttonKeys.filter(el => el.name === target);
 		let value = obj[0].value;
 		//console.log(value);
 
@@ -270,6 +265,7 @@ class Calculator extends React.Component{
 	
 	render(){
 		return (
+			<div id="MyApp">
 			<div id="aligner">
 				<div id="keypad-area">
 					<div id="display-area">
@@ -279,12 +275,10 @@ class Calculator extends React.Component{
 					{this.makeKeys()}
 				</div>
 			</div>
+		</div>
 		)
 	}
 };
-
-
-
 
 class Display extends React.Component{
 	render(){
@@ -306,9 +300,6 @@ class Formula extends React.Component{
 	}
 };
 
-ReactDOM.render(<Calculator />, document.getElementById("MyApp"));
-    </div>
-  );
-}
 
-export default App;
+// ReactDOM.render(<Calculator />, document.getElementById("MyApp"));
+export default Calculator;
